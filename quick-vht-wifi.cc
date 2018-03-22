@@ -89,7 +89,7 @@ int main (int argc, char *argv[])
  
     // Configure the position of the nodes in the deployment 
     MobilityHelper mobility; 
-    Ptr positionAlloc = CreateObject (); 
+    Ptr<ListPositionAllocator> positionAlloc = CreateObject<ListPositionAllocator>(); 
     positionAlloc->Add (Vector (0.0, 0.0, 0.0));
  
     positionAlloc->Add (Vector (distance, 0.0, 0.0));
@@ -143,7 +143,7 @@ int main (int argc, char *argv[])
     {
       //TCP flow
       //needs to be implemented
-      assert(false);
+      NS_ASSERT (false);
     }
  
     // Distributing routing tables
@@ -158,8 +158,8 @@ int main (int argc, char *argv[])
     if (udp)
     {
       //UDP
-      assert (clientApp.GetN () == wifiStaNode.GetN ());
-      uint32_t totalPacketsThrough = DynamicCast (serverApp.Get (0))->GetReceived ();
+      NS_ASSERT (clientApp.GetN () == wifiStaNode.GetN ());
+      uint32_t totalPacketsThrough = DynamicCast<UdpServer> (serverApp.Get (0))->GetReceived ();
       throughput = totalPacketsThrough * payloadSize * 8 / (simulationTime * 1000000.0); //Mbit/s
       std::cout << "--->Throughput for " << s << " stations: " << throughput << " Mbps" << std::endl;
     }
@@ -167,7 +167,7 @@ int main (int argc, char *argv[])
     {
       //TCP
       //needs to be implemented
-      assert(false);
+      NS_ASSERT (false);
     }
   }
   return 0;
