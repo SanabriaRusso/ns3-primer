@@ -38,7 +38,7 @@ Default values are defined at initialization of the SuperTable class (see execut
 
 ============================
 
-###Special notes:
+### Special notes:
 
 The ns-3 script should be located inside the scratch directory. While executioner.py should be placed at the same level of the scrat directory.
 
