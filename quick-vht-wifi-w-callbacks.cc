@@ -80,7 +80,6 @@ int main (int argc, char *argv[])
   bool udp = true;
   double simulationTime = 10; //seconds
   double distance = 1.0; //meters
-  struct my_struct counter; //counting the number of rx bytes
 
   uint32_t gi = 0;
   uint32_t stations = 2;
@@ -99,6 +98,7 @@ int main (int argc, char *argv[])
 
   for (uint32_t s = 1; s <= stations; s++)
     {
+      struct my_struct counter; //counting the number of rx bytes
       std::cout << "-->Stations: " << s << ":" << std::endl;
       uint32_t payloadSize; //1500 byte IP packet
       if (udp)
