@@ -18,7 +18,8 @@ int main (int argc, char *argv[])
   bool udp = true;
   double simulationTime = 10; //seconds
   double distance = 1.0; //meters
- 
+  
+  uint32_t seed = -1; 
   uint32_t gi = 0;
   uint32_t stations = 2;
   uint32_t mcs = 0;
@@ -33,12 +34,16 @@ int main (int argc, char *argv[])
   CommandLine cmd;
   cmd.AddValue ("channelWidth", "WiFi Channel width", channelWidth);
   cmd.AddValue ("mcs", "Modulation and Coding scheme", mcs);
+  cmd.AddValue ("seed", "Simulation seed. Used for random number generation", seed);
   cmd.AddValue ("stations", "Number of stations per AP", stations);
   cmd.AddValue ("distance", "Distance in meters between the station and the access point", distance);
   cmd.AddValue ("simulationTime", "Simulation time in seconds", simulationTime);
   cmd.AddValue ("udp", "UDP if set to 1, TCP otherwise", udp);
   cmd.Parse (argc,argv);
- 
+
+  if (seed > 0)
+    RngSeedManager::SetSeed (seed);
+	
   for (uint32_t s = 1; s <= stations; s++)
   {
     // we define parameters for each of the stations in the simulation
